@@ -1,13 +1,10 @@
 <?php
-
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     $racine = "..";
 }
-include_once "$racine/modele/bd.liaison.inc.php";
 
 $liaisons = getLiaisonsLignes();
 $tarifsLiaisons = array();
-
 
 $lesCategories = getCategories();
 $lesPeriodes = getPeriodes();

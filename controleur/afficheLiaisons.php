@@ -2,7 +2,6 @@
 if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     $racine = "..";
 }
-include_once "$racine/modele/bd.liaison.inc.php";
 
 if (isset($_GET['id'])){
     $idSecteur = $_GET['id'];

@@ -7,6 +7,9 @@ function controleurPrincipal($action) {
     $lesActions["tarifs"]= "afficheTarifs.php";
     $lesActions["traversees"]= "afficheTraversees.php";
 
+    $lesActions["reservation"]= "reserveTraversee.php";
+    $lesActions["confirmation"]= "confirmeReservation.php";
+
     if (array_key_exists($action, $lesActions)) {
         return $lesActions[$action];
     } else {
