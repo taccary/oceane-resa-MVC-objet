@@ -6,7 +6,6 @@ function controleurPrincipal($action) {
     $lesActions["liaisons"]= "afficheLiaisons.php";
     $lesActions["tarifs"]= "afficheTarifs.php";
     $lesActions["traversees"]= "afficheTraversees.php";
-
     $lesActions["reservation"]= "reserveTraversee.php";
     $lesActions["confirmation"]= "confirmeReservation.php";
 

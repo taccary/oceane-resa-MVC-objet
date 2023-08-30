@@ -1,6 +1,28 @@
 <?php
 
 /**
+ * Retourne la traversée dont l'id est passé en paramètre avec les infos de la liaison
+ *
+ * @param integer $id
+ * @return array
+ */
+function getTraverseeById(int $id) : array {
+    try {
+        $cnx = getPDO();
+        $req = $cnx->prepare("SELECT * FROM traversee T JOIN liaison L ON L.code=T.codeLiaison
+        where num=:id");
+        $req->bindValue(':id', $id, PDO::PARAM_INT);
+        $req->execute();
+
+        $resultat = $req->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e) {
+        print "Erreur !: " . $e->getMessage();
+        die();
+    }
+    return $resultat;
+}
+
+/**
  * getTraverseesByLiaisonAndDate : Retourne l'ensemble des traversées pour une liaison et une date données
  *
  * @param integer $idLiaison
@@ -78,9 +100,15 @@ function getPlacesTraverseesByLiaisonAndDate(int $idLiaison, string $date) : arr
 function getPlacesReservesTraversees() : array {
     $resultat = array();
     try {
-        
-        // code à écrire
+        $cnx = getPDO();
+        $req = $cnx->prepare("SELECT r.numTraversee, d.lettreCategorie, sum(d.quantité) as 'placesReservees' FROM reservation r JOIN detail_reservation d ON d.numReservation = r.num GROUP BY r.numTraversee, d.lettreCategorie");
+        $req->execute();
 
+        $ligne = $req->fetch(PDO::FETCH_ASSOC);
+        while ($ligne) {
+                $resultat[$ligne['numTraversee']][$ligne['lettreCategorie']] = intval($ligne['placesReservees']);                   
+                $ligne = $req->fetch(PDO::FETCH_ASSOC);
+            }
     } catch (PDOException $e) {
         print "Erreur !: " . $e->getMessage();
         die();
