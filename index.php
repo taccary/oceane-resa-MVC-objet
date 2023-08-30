@@ -10,6 +10,7 @@ include_once "$racine/modele/bd.port.inc.php";
 include_once "$racine/modele/bd.secteur.inc.php";
 include_once "$racine/modele/bd.tarification.inc.php";
 include_once "$racine/modele/bd.traversee.inc.php";
+include_once "$racine/modele/bd.reservation.inc.php";
 
 
 if (isset($_GET["action"])){

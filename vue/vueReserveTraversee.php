@@ -25,8 +25,6 @@ Saisir les informations relatives à la réservation <br/>
     <input type="text" class="form-control" id="ville" name="ville" placeholder="Ville" required>
   </div>
 
-<?php var_dump($tarifs); ?>
-
   <h2>Choix des places</h2>
   <div class="form-group">
     <table>
@@ -42,7 +40,7 @@ Saisir les informations relatives à la réservation <br/>
           <tr>
             <td><?= $tarif['type'] ?></td>
             <td><?= $tarif['tarif'] ?></td>
-            <td><input type="number" name="places['<?= $tarif['idType'] ?>']" min="0"></td>
+            <td><input type="number" name="places[<?= $tarif['idCategorie'] ?>-<?= $tarif['idType'] ?>]" min="0"></td>
           </tr>
         <?php } ?>
       </tbody>

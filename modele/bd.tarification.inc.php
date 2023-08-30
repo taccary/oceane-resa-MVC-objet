@@ -35,7 +35,7 @@ function getTarifsPeriode(string $idPeriode) : array {
     $resultat = array();
     try {
         $cnx = getPDO();
-        $req = $cnx->prepare("SELECT libelleCategorie as categorie, libelleTypeBillet as type, t.idTypeBillet as idType, tarif, libellePeriode as periode FROM tarification t JOIN periode p ON t.idPeriode=p.idPeriode JOIN type_billet tb ON (t.idCategorie, t.idTypebillet) = (tb.idCategorie, tb.idTypebillet) JOIN categorie c ON t.idCategorie = c.idCategorie WHERE t.idPeriode=:idPeriode ORDER BY t.idCategorie, t.idTypebillet");
+        $req = $cnx->prepare("SELECT libelleCategorie as categorie, t.idCategorie as idCategorie, libelleTypeBillet as type, t.idTypeBillet as idType, tarif, libellePeriode as periode FROM tarification t JOIN periode p ON t.idPeriode=p.idPeriode JOIN type_billet tb ON (t.idCategorie, t.idTypebillet) = (tb.idCategorie, tb.idTypebillet) JOIN categorie c ON t.idCategorie = c.idCategorie WHERE t.idPeriode=:idPeriode ORDER BY t.idCategorie, t.idTypebillet");
         $req->bindValue(':idPeriode', $idPeriode, PDO::PARAM_STR);
         $req->execute();
 
