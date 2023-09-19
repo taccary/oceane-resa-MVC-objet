@@ -1,6 +1,5 @@
 <?php
   //var_dump($secteurs);
-  var_dump($liaisonsSecteur);
 ?>
   <h1><?= $titre ?></h1>
   <table class="table">
@@ -16,26 +15,26 @@
         <tbody>
       
     <?php
-    foreach ($secteurs as $secteur){
+    foreach ($liaisonsSecteur as $secteur){
       $i = 1; // itérateur pour différentier la première ligne
-      $nbLiaisons = count($secteur['liaisons']);
+      $nbLiaisons = count($secteur);
     ?> 
           <?php
-          foreach ($secteur['liaisons'] as $liaison){
+          foreach ($secteur as $liaison){
             if ($i==1){
             ?>
               <tr>
                 <th scope="row" rowspan="<?= $nbLiaisons ?>">
-                  <?= $secteur['nom'] ?>
+                  <?= $liaison->getSecteur()->getNom() ?>
                 </th>
             <?php } else { ?>
               <tr>
             <?php } ?>
+                <td><?= $liaison->getCode(); ?></td>
+                <td><?= $liaison->getDistance(); ?></td>
+                <td><?= $liaison->getPortDepart()->getNom(); ?></td>
+                <td><?= $liaison->getPortArrivee()->getNom(); ?></td>
 
-                <td><?= $liaison['code']?></td>
-                <td><?= $liaison['distance']?></td>
-                <td><?= $liaison['portDepart']?></td>
-                <td><?= $liaison['portArrivee']?></td>
               </tr>
 
           <?php

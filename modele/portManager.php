@@ -33,4 +33,12 @@ class PortManager extends Manager
         }
         return $ports;
     }
+
+public function getList() //instancie une collection d'objets ports
+{
+    $ports = [];
+    $q = $this->getPDO()->query('SELECT * FROM port ORDER BY nom');
+    $ports = $sth->fetchAll(PDO::FETCH_CLASS, "Port");
+}
+
 }

@@ -1,7 +1,7 @@
 <?php
 class Secteur {
-    private $id;
-    private $nom;
+    private int $id;
+    private string $nom;
     
     public function __construct($id, $nom) {
         $this->id = $id;
