@@ -1,10 +1,10 @@
 <?php
 class Port 
 {
-    private $nomCourt;
-    private $nom;
+    private string $nomCourt;
+    private string $nom;
     
-    public function __construct($nomCourt, $nom) {
+    public function __construct(string $nomCourt, string $nom) {
         $this->nomCourt = $nomCourt;
         $this->nom = $nom;
     }
@@ -17,11 +17,11 @@ class Port
         return $this->nom;
     }
 
-    public function setNomCourt($nomCourt): void {
+    public function setNomCourt(string $nomCourt): void {
         $this->nomCourt = $nomCourt;
     }
 
-    public function setNom($nom): void {
+    public function setNom(string $nom): void {
         $this->nom = $nom;
     }
 }

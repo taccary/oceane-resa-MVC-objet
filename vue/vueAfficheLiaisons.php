@@ -1,5 +1,6 @@
 <?php
   //var_dump($secteurs);
+  var_dump($liaisonsSecteur);
 ?>
   <h1><?= $titre ?></h1>
   <table class="table">

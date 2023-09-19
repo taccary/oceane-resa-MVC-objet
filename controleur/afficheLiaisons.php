@@ -3,6 +3,11 @@ if ($_SERVER["SCRIPT_FILENAME"] == __FILE__) {
     $racine = "..";
 }
 
+require_once("$racine/modele/LiaisonManager.php");
+$liaisonManager = new LiaisonManager(); // Création d'un objet
+
+$liaisons = $liaisonManager->getList();
+
 if (isset($_GET['id'])){
     $idSecteur = $_GET['id'];
     $nomSecteur = getSecteurById($idSecteur)['nom'];
