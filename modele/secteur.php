@@ -3,9 +3,9 @@ class Secteur {
     private int $id;
     private string $nom;
     
-    public function __construct($id, $nom) {
-        $this->id = $id;
-        $this->nom = $nom;
+    public function __construct($unId, $unNom) {
+        $this->id = $unId;
+        $this->nom = $unNom;
     }
     
     public function getId() : int {
@@ -16,12 +16,12 @@ class Secteur {
         return $this->nom;
     }
 
-    public function setId(int $id): void {
-        $this->id = $id;
+    public function setId(int $unId): void {
+        $this->id = $unId;
     }
 
-    public function setNom(string $nom): void {
-        $this->nom = $nom;
+    public function setNom(string $unNom): void {
+        $this->nom = $unNom;
     }
 }
 

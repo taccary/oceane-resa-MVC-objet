@@ -7,14 +7,15 @@ class SecteurManager extends Manager
     /**
      * instancie et renvoie un objet secteur correspondant à l'id passé en paramètre.
      *
-     * @param [type] $id
+     * @param int $id
      * @return Secteur
      */
-    public function get($id) : Secteur
+    public function get(int $unId) : Secteur
     {
-        $id = (int) $id;
-        $q = $this->getPDO()->query('SELECT id, nom FROM secteur WHERE id = '.$id);
-        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        $req = $this->getPDO()->prepare("SELECT id, nom FROM secteur WHERE id = :id");
+        $req->bindValue(':id', $unId, PDO::PARAM_INT);
+        $req->execute();
+        $donnees = $req->fetch(PDO::FETCH_ASSOC);
         return new Secteur($donnees['id'], $donnees['nom']);
     }
   
@@ -26,8 +27,9 @@ class SecteurManager extends Manager
     public function getList() : array 
     {
         $secteurs = [];
-        $q = $this->getPDO()->query('SELECT id, nom FROM secteur ORDER BY nom');
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        $req = $this->getPDO()->prepare("SELECT id, nom FROM secteur ORDER BY nom");
+        $req->execute();
+        while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
         {
             $secteurs[$donnees['id']] = new Secteur($donnees['id'], $donnees['nom']);
         }

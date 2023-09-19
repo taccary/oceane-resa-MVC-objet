@@ -11,10 +11,12 @@ class PortManager extends Manager
      * @param [type] $nomCourt
      * @return Port
      */
-    public function get($nomCourt) : Port
+    public function get($unNomCourt) : Port
     {
-        $q = $this->getPDO()->query('SELECT nom_court, nom FROM port WHERE nom_court = '.$nomCourt);
-        $donnees = $q->fetch(PDO::FETCH_ASSOC);
+        $req = $this->getPDO()->prepare("SELECT nom_court, nom FROM port WHERE nom_court = :nom");
+        $req->bindValue(':nom', $unNomCourt, PDO::PARAM_STR);
+        $req->execute();
+        $donnees = $req->fetch(PDO::FETCH_ASSOC);
         return new Port($donnees['nom_court'], $donnees['nom']);
     }
   
@@ -26,19 +28,13 @@ class PortManager extends Manager
     public function getList() : array
     {
         $ports = [];
-        $q = $this->getPDO()->query('SELECT nom_court, nom FROM port ORDER BY nom');
-        while ($donnees = $q->fetch(PDO::FETCH_ASSOC))
+        $req = $this->getPDO()->prepare("SELECT nom_court, nom FROM port ORDER BY nom");
+        $req->execute();
+        while ($donnees = $req->fetch(PDO::FETCH_ASSOC))
         {
             $ports[$donnees['nom_court']] = new Port($donnees['nom_court'], $donnees['nom']);
         }
         return $ports;
     }
-
-public function getList() //instancie une collection d'objets ports
-{
-    $ports = [];
-    $q = $this->getPDO()->query('SELECT * FROM port ORDER BY nom');
-    $ports = $sth->fetchAll(PDO::FETCH_CLASS, "Port");
-}
 
 }
