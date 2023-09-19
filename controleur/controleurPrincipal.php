@@ -9,6 +9,8 @@ function controleurPrincipal($action) {
     $lesActions["reservation"]= "reserveTraversee.php";
     $lesActions["confirmation"]= "confirmeReservation.php";
 
+    $lesActions["ports"]= "c_affichePorts.php";
+
     if (array_key_exists($action, $lesActions)) {
         return $lesActions[$action];
     } else {
